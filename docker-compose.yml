@@ -2,6 +2,8 @@ version: "3.9"
 services:
 
   backend:
+    env_file:
+      - ./.env
     hostname: internal.api
     build:
       dockerfile: Dockerfile_back
@@ -16,6 +18,8 @@ services:
 
 
   bot:
+    env_file:
+      - ./.env
     hostname: external.bot
     build:
       dockerfile: Dockerfile_bot
