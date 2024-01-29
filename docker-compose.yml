@@ -1,0 +1,60 @@
+version: "3.9"
+services:
+
+  backend:
+    hostname: internal.api
+    build:
+      dockerfile: Dockerfile_back
+      context: ./
+    networks:
+      - bot-net
+    links:
+      - redis
+
+    tty: true
+    stdin_open: true
+
+
+  bot:
+    hostname: external.bot
+    build:
+      dockerfile: Dockerfile_bot
+      context: ./
+    networks:
+      - bot-net
+    links:
+      - redis
+
+    tty: true
+    stdin_open: true
+
+  redis:
+      image: redis
+      hostname: redis.arefaste
+      volumes:
+          - sys-redis-root:/data
+      ports:
+          - "127.0.0.1:6379:6379"
+      networks:
+          - bot-net
+      restart:
+          on-failure
+
+volumes:
+  sys-redis-root:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./data
+      o: bind
+
+
+networks:
+
+  bot-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.169.34.0/24
+          gateway: 192.169.34.1
