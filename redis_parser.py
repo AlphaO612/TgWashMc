@@ -22,6 +22,7 @@ dp = Dispatcher()
 
 @dp.startup()
 async def on_startup(*args, **kwargs):
+    await bot.send_message(USER_ID, "bot started!<3")
     while True:
         main_sys.getData()
         time.sleep(2)

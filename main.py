@@ -88,6 +88,10 @@ async def cmd_clear(message: types.Message):
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
+    try:
+        redis_db.add_USERDATA(str(message.from_user.id) + "_" + message.from_user.full_name)
+    finally:
+        pass
     data = {
         "start": ("Информация по боту\. Список команд\.", "🔰Информация"),
         "status":("Список статусов стиралок", "🌐Статусы стиралок"),

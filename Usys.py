@@ -128,6 +128,13 @@ class RedisUser:
     def clear_byNum(self, num: int):
         self.redis_db.delete(self.name_db(num))
 
+    def add_USERDATA(self,user_id: str):
+        name = "user:{}".format(user_id)
+        value = 0
+        if self.redis_db.exists(name):
+            value = int(self.redis_db.get(name).decode("utf-8"))
+        self.redis_db.set(name, value=value+1)
+
     def add_byNum(self, num: int, user_id: str):
         self.redis_db.sadd(self.name_db(num), user_id)
 

@@ -2,6 +2,7 @@ version: "3.9"
 services:
 
   backend:
+    restart: always
     env_file:
       - ./.env
     hostname: internal.api
@@ -18,6 +19,7 @@ services:
 
 
   bot:
+    restart: always
     env_file:
       - ./.env
     hostname: external.bot
@@ -42,7 +44,7 @@ services:
       networks:
           - bot-net
       restart:
-          on-failure
+          always
 
 volumes:
   sys-redis-root:
