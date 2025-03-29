@@ -2,10 +2,11 @@ FROM python:3.9
 
 WORKDIR app
 
-COPY ./settings.py ./settings.py
-COPY ./main.py ./main.py
-COPY ./Usys.py ./Usys.py
-COPY ./requirements.txt ./requirements.txt
+COPY ./settings.py /app/settings.py
+COPY ./main.py /app/main.py
+COPY ./Usys.py /app/Usys.py
+COPY ./requirements.txt /app/requirements.txt
+COPY ./logger.py /app/logger.py
 
 RUN apt-get update
 RUN MULTIDICT_NO_EXTENSIONS=1 pip3 install multidict
