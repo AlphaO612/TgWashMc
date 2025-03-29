@@ -16,7 +16,7 @@ def setup_logger(name: str) -> logging.Logger:
     logger = logging.getLogger(name)
     
     # Добавляем обработчик для записи в файл
-    file_handler = logging.FileHandler(f'{name}.log')
+    file_handler = logging.FileHandler(f'logs/{name}.log')
     file_handler.setFormatter(logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     ))
