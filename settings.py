@@ -1,6 +1,6 @@
 import os
 REDIS_DB: dict = dict(
-        host="localhost",
+        host="redis.arefaste",
         port=6379,
         db=0,
         password=None,

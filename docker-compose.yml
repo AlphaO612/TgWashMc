@@ -9,6 +9,8 @@ services:
     build:
       dockerfile: Dockerfile_back
       context: ./
+    volumes:
+      - .:/app
     networks:
       - bot-net
     links:
@@ -26,6 +28,8 @@ services:
     build:
       dockerfile: Dockerfile_bot
       context: ./
+    volumes:
+      - .:/app
     networks:
       - bot-net
     links:
